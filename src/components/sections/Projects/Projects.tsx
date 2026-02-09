@@ -1,12 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useTranslation } from "@/hooks/useTranslation";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import SectionHeader from "@/components/ui/SectionHeader/SectionHeader";
+import { useTranslation } from "@/hooks/useTranslation";
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const projects = [
   {
@@ -45,7 +46,7 @@ const projects = [
 
 export default function Projects() {
   const { t } = useTranslation();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
@@ -67,27 +68,35 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}>
               <div className="image-container">
                 <Image
-                  src={project.image}
+                  src={`${BASE_PATH}${project.image}`}
                   alt={t(`projects.${project.id}.title`)}
                   width={600}
                   height={300}
                   className="project-image"
+                  priority={index === 0}
                 />
               </div>
+
               <div className="project-content">
                 <div className="project-header">
                   <span className="project-year">{project.year}</span>
+
                   <div className="project-links">
                     <a
                       href={project.github}
                       className="project-link"
-                      aria-label="View code">
+                      aria-label="View code"
+                      target="_blank"
+                      rel="noopener noreferrer">
                       <Github size={18} />
                     </a>
+
                     <a
                       href={project.live}
                       className="project-link"
-                      aria-label="View live">
+                      aria-label="View live"
+                      target="_blank"
+                      rel="noopener noreferrer">
                       <ExternalLink size={18} />
                     </a>
                   </div>
@@ -96,6 +105,7 @@ export default function Projects() {
                 <h3 className="project-title">
                   {t(`projects.${project.id}.title`)}
                 </h3>
+
                 <p className="project-description">
                   {t(`projects.${project.id}.description`)}
                 </p>
