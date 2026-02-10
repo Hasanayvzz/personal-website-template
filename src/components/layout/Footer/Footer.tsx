@@ -32,9 +32,6 @@ export default function Footer() {
             <p>
               © {currentYear} John Doe. {t("footer.rights")}
             </p>
-            <p className="made-with">
-              {t("footer.madeWith")} <span className="heart">❤️</span>
-            </p>
           </div>
         </motion.div>
       </div>
