@@ -7,7 +7,10 @@ import Image from "next/image";
 import SectionHeader from "@/components/ui/SectionHeader/SectionHeader";
 import { useTranslation } from "@/hooks/useTranslation";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const BASE_PATH =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_BASE_PATH || ""
+    : "";
 
 const projects = [
   {

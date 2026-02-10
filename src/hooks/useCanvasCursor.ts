@@ -149,6 +149,9 @@ const useCanvasCursor = () => {
   }
 
   const renderCanvas = function () {
+    // Mobile check
+    if (window.matchMedia("(max-width: 768px)").matches) return;
+
     ctx = document.getElementById("canvas").getContext("2d");
     ctx.running = true;
     ctx.frame = 1;
