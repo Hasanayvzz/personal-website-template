@@ -65,7 +65,7 @@ src/
 1.  **Clone it:**
 
     ```bash
-    git clone https://github.com/Hasanayvzz/Personal_Website_Template.git my-website
+    git clone https://github.com/Hasanayvzz/personal_website_template.git my-website
     cd my-website
     ```
 
